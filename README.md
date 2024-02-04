@@ -5,5 +5,6 @@
 ```python
 import rustle
 
-rustle.encode('aaaabbbcc') # -> 'a4b3c2'
+rustle.encode_str('aaaabbbcc') # -> 'a4b3c2'
+rsutle.decode_str('a4b3c2') # -> 'aaaabbbcc'
 ```
