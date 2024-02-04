@@ -100,3 +100,18 @@ fn rustle(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(decode_bw_image, m)?)?;
     Ok(())
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_encode_str() {
+        assert_eq!(encode_str("aaaabbbcc"), "a4b3c2");
+    }
+
+    #[test]
+    fn test_decode_str() {
+        assert_eq!(decode_str("a4b3c2"), "aaaabbbcc");
+    }
+}
