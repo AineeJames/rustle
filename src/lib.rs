@@ -20,9 +20,28 @@ fn encode_str(input: &str) -> String {
     result
 }
 
+/// takes an encoded str like a4b3c2 and returns the decoded string like aaaabbbcc
 #[pyfunction]
 fn decode_str(input: &str) -> String {
-    unimplemented!()
+    let mut result = String::new();
+    for (i, c) in input.chars().enumerate() {
+        if c.is_ascii_digit() {
+            continue;
+        }
+        let mut count = String::from("0");
+        for d in input.chars().skip(i + 1) {
+            if d.is_ascii_digit() {
+                count.push(d);
+            } else {
+                break;
+            }
+        }
+        let count = count.parse::<usize>().unwrap();
+        for _ in 0..count {
+            result.push(c);
+        }
+    }
+    result
 }
 
 /// A Python module implemented in Rust.
